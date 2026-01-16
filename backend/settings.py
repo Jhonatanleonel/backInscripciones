@@ -11,6 +11,9 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 """
 
 import os
+from dotenv import load_dotenv
+load_dotenv()
+
 from pathlib import Path
 import dj_database_url
 
@@ -77,6 +80,7 @@ CSRF_COOKIE_HTTPONLY = False  # para que pueda ser accedido desde JavaScript
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
+    "inscriciones.vercel.app",
     "https://coro-juvenil.vercel.app",
     "https://coro-juvenil-git-main-jhonatanramos-projects.vercel.app",
     "https://coro-juvenil-11c7cukbc-jhonatanramos-projects.vercel.app",
@@ -106,12 +110,25 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 # Configuración de base de datos para desarrollo y producción
+#ATABASES = {
+#   'default': {
+#       'ENGINE': 'django.db.backends.sqlite3',
+#       'NAME': BASE_DIR / 'db.sqlite3',
+#   }
+#
+
+# =========================
+# DATABASE CONFIGURATION
+# =========================
+
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
+    'default': dj_database_url.config(
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+        conn_max_age=600,
+        conn_health_checks=True,
+    )
 }
+
 
 # Si hay DATABASE_URL (en producción), usar PostgreSQL
 if 'DATABASE_URL' in os.environ:

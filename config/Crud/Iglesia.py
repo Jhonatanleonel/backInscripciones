@@ -39,3 +39,24 @@ def create_iglesia(request):
 def list_iglesias(request):
     iglesias = Iglesia.objects.all()
     return Response(iglesias.values(), status=status.HTTP_200_OK)
+
+@api_view(['DELETE'])
+def delete_iglesia(request, id):
+    try:
+        iglesia = Iglesia.objects.get(id=id)
+        iglesia.delete()
+        return Response({'message': 'Iglesia eliminada correctamente'}, status=status.HTTP_200_OK)
+    except Iglesia.DoesNotExist:
+        return Response({'error': 'Iglesia no encontrada'}, status=status.HTTP_404_NOT_FOUND)
+
+@api_view(['PUT'])
+def update_iglesia(request, id):
+    try:
+        iglesia = Iglesia.objects.get(id=id)
+        nombre = request.data.get('nombre')
+        if nombre:
+            iglesia.nombre = nombre.title().strip()
+            iglesia.save()
+        return Response({'message': 'Iglesia actualizada correctamente'}, status=status.HTTP_200_OK)
+    except Iglesia.DoesNotExist:
+        return Response({'error': 'Iglesia no encontrada'}, status=status.HTTP_404_NOT_FOUND)
