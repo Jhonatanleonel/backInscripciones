@@ -80,7 +80,7 @@ CSRF_COOKIE_HTTPONLY = False  # para que pueda ser accedido desde JavaScript
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
-    "inscriciones.vercel.app",
+    "http://inscriciones.vercel.app",
     "https://coro-juvenil.vercel.app",
     "https://coro-juvenil-git-main-jhonatanramos-projects.vercel.app",
     "https://coro-juvenil-11c7cukbc-jhonatanramos-projects.vercel.app",
