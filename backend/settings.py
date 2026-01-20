@@ -114,12 +114,12 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
 # Configuración de base de datos para desarrollo y producción
-#ATABASES = {
+#DATABASES = {
 #   'default': {
 #       'ENGINE': 'django.db.backends.sqlite3',
 #       'NAME': BASE_DIR / 'db.sqlite3',
 #   }
-#
+#}
 
 # =========================
 # DATABASE CONFIGURATION
@@ -127,11 +127,23 @@ WSGI_APPLICATION = 'backend.wsgi.application'
 
 DATABASES = {
     'default': dj_database_url.config(
-        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",
+        default=f"sqlite:///{BASE_DIR / 'db.sqlite3'}",  # fallback para desarrollo
         conn_max_age=600,
         conn_health_checks=True,
     )
 }
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'django.db.backends.postgresql',
+#        'NAME': 'asorbol_produccion',
+#        'USER': 'asorbol_produccion_user',
+#        'PASSWORD': 'rjYAGxU0raFwAxQSdO2jpXIPVXeVlgMQ',
+#        'HOST': 'dpg-d5n3vrkmrvns73fh6oog-a.oregon-postgres.render.com',
+#        'PORT': '5432',
+#    }
+#}
+
+
 
 
 # Si hay DATABASE_URL (en producción), usar PostgreSQL

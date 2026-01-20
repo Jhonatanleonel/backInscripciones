@@ -12,7 +12,8 @@ def create_inscrito(request):
 
     nombre = data.get('nombre', '').strip().title()
     paterno = data.get('paterno', '').strip().title()
-    materno = data.get('materno', '').strip().title()
+    materno = data.get('materno')
+    materno = materno.strip().title() if materno else None
     edad = data.get('edad')
     genero = data.get('genero', '').strip().title()
     iglesia = data.get('iglesia')
@@ -22,7 +23,7 @@ def create_inscrito(request):
     pagoHora = data.get('pagoHora')
     pagoComprobante = data.get('pagoComprobante')  # Restored missing variable
 
-    if not nombre or not paterno or not materno or not edad or not genero or not iglesia:
+    if not nombre or not paterno or not edad or not genero or not iglesia:
         return Response({'error': 'Todos los campos son obligatorios'}, status=400)
 
     if pagoComprobante and not pagoTelefono:
@@ -31,8 +32,8 @@ def create_inscrito(request):
     existe = Inscrito.objects.filter(
         nombre=nombre,
         paterno=paterno,
-        materno=materno,
-        edad=edad
+        edad=edad,
+        iglesia_id=iglesia
     ).exists()
 
     if existe:

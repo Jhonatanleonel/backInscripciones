@@ -15,7 +15,7 @@ class Inscrito(models.Model):
 
     nombre = models.CharField(max_length=50)
     paterno = models.CharField(max_length=50)
-    materno = models.CharField(max_length=50)
+    materno = models.CharField(max_length=50, null=True, blank=True)
     edad = models.PositiveIntegerField()
     genero = models.CharField(max_length=1, choices=GENERO_CHOICES)
 

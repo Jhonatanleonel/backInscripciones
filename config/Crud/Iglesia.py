@@ -37,7 +37,7 @@ def create_iglesia(request):
     
 @api_view(['GET'])
 def list_iglesias(request):
-    iglesias = Iglesia.objects.all()
+    iglesias = Iglesia.objects.all().order_by('nombre')
     return Response(iglesias.values(), status=status.HTTP_200_OK)
 
 @api_view(['DELETE'])
