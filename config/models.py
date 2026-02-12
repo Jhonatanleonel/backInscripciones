@@ -22,7 +22,7 @@ class Inscrito(models.Model):
     pagoTelefono = models.CharField(max_length=20, null=True, blank=True)
     pagoFecha = models.DateField(null=True, blank=True)
     pagoHora = models.TimeField(null=True, blank=True)
-    pagoComprobante = models.CharField(max_length=200, null=True, blank=True)
+    pagoComprobante = models.CharField(max_length=500, null=True, blank=True)
 
     verificado = models.BooleanField(default=False)
 
