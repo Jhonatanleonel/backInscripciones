@@ -10,5 +10,3 @@ python manage.py migrate
 # Recolectar archivos estáticos
 python manage.py collectstatic --noinput
 
-# Ejecutar seed (si existe)
-python manage.py seed

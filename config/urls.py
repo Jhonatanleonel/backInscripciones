@@ -2,7 +2,6 @@ from django.urls import path
 from .Crud.Iglesia import *
 from .Crud.Inscricion import *
 from .Crud.Reporte import reporte_general
-from .Crud.Inscricion import acoplar_inscrito
 urlpatterns = [
     path('iglesia/crear/', create_iglesia), 
     path('iglesia/listar/', list_iglesias),
@@ -12,9 +11,6 @@ urlpatterns = [
     path('Inscripcion/crear/', create_inscrito), 
     path('Inscripcion/listar/', list_inscritos), 
     path('Inscripcion/cupo/', cupo_inscritos), 
-    path('Inscripcion/confirmar/', confirmar_inscrito),
-    path('Inscripcion/acoplar/', acoplar_inscrito),
-    path('Inscripcion/buscar/', buscar_inscrito),
 
     # 📊 REPORTE
     path('reporte/general/', reporte_general),

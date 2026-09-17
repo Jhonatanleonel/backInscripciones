@@ -71,10 +71,6 @@ CORS_ALLOW_ALL_ORIGINS = True  # Más seguro en producción
 CORS_ALLOWED_ORIGINS = [
     "http://localhost:5173",  # tu frontend local
     "https://tudominio.vercel.app",  # producción
-    "http://inscriciones.vercel.app",
-    "http://coro-juvenil.vercel.app",
-    "http://coro-juvenil-git-main-jhonatanramos-projects.vercel.app",
-    "http://coro-juvenil-11c7cukbc-jhonatanramos-projects.vercel.app",
 ]
 CORS_ALLOW_CREDENTIALS = True
 CSRF_COOKIE_NAME = "csrftoken"        # nombre de la cookie
@@ -84,10 +80,6 @@ CSRF_COOKIE_HTTPONLY = False  # para que pueda ser accedido desde JavaScript
 CSRF_TRUSTED_ORIGINS = [
     "http://localhost:5173",
     "http://127.0.0.1:5173",
-    "http://inscriciones.vercel.app",
-    "https://coro-juvenil.vercel.app",
-    "https://coro-juvenil-git-main-jhonatanramos-projects.vercel.app",
-    "https://coro-juvenil-11c7cukbc-jhonatanramos-projects.vercel.app",
 ]
 
 
@@ -176,9 +168,10 @@ AUTH_PASSWORD_VALIDATORS = [
 # Internationalization
 # https://docs.djangoproject.com/en/5.2/topics/i18n/
 
-LANGUAGE_CODE = 'en-us'
+LANGUAGE_CODE = 'es-bo'
 
-TIME_ZONE = 'UTC'
+# Las fechas de inscripción y sus gráficas corresponden al horario del evento.
+TIME_ZONE = 'America/La_Paz'
 
 USE_I18N = True
 

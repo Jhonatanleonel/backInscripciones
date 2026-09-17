@@ -18,6 +18,10 @@ class Inscrito(models.Model):
     materno = models.CharField(max_length=50, null=True, blank=True)
     edad = models.PositiveIntegerField()
     genero = models.CharField(max_length=1, choices=GENERO_CHOICES)
+    telefono = models.CharField(max_length=20, null=True, blank=True)
+    fecha_nacimiento = models.DateField(null=True, blank=True)
+    primer_retiro = models.BooleanField(default=False)
+    motivo_retiro = models.CharField(max_length=250, null=True, blank=True)
 
     pagoTelefono = models.CharField(max_length=20, null=True, blank=True)
     pagoFecha = models.DateField(null=True, blank=True)
