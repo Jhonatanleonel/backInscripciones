@@ -27,12 +27,23 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = os.environ.get('SECRET_KEY', 'django-insecure-y_2fk#jetyjb^wlwc-@=#av$xrfde2lmc3^3f4#%ki6$fh@r6p')
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'RENDER' not in os.environ
+# DEBUG solo se activa explícitamente en desarrollo. Railway y Render quedan
+# en modo producción aunque no definan una variable específica de plataforma.
+DEBUG = os.environ.get('DEBUG', '').lower() == 'true'
 
-ALLOWED_HOSTS =[]
-RENDER_EXTERNAL_HOSTNAME= os.environ.get('RENDER_EXTERNAL_HOSTNAME')
-if RENDER_EXTERNAL_HOSTNAME: ALLOWED_HOSTS.append(RENDER_EXTERNAL_HOSTNAME)
+ALLOWED_HOSTS = ['ample-vision-production-c2b3.up.railway.app']
+for hostname in (
+    os.environ.get('RENDER_EXTERNAL_HOSTNAME'),
+    os.environ.get('RAILWAY_PUBLIC_DOMAIN'),
+):
+    if hostname:
+        ALLOWED_HOSTS.append(hostname)
+for hostname in os.environ.get('ALLOWED_HOSTS', '').split(','):
+    hostname = hostname.strip()
+    if hostname:
+        ALLOWED_HOSTS.append(hostname)
+if DEBUG:
+    ALLOWED_HOSTS.extend(['localhost', '127.0.0.1'])
 
 TIME_ZONE = 'America/La_Paz'
 USE_TZ = True
