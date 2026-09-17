@@ -211,6 +211,9 @@ REST_FRAMEWORK = {
 # Security settings for production
 if not DEBUG:
     # Security settings
+    # Railway termina HTTPS en su proxy y comunica el protocolo original
+    # mediante este encabezado. Sin esta opción Django entra en un bucle 301.
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
     SECURE_SSL_REDIRECT = True
     SESSION_COOKIE_SECURE = True
     CSRF_COOKIE_SECURE = True
